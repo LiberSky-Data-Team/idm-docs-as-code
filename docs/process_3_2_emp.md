@@ -14,6 +14,7 @@ flowchart LR
     OUT[("Silver: 社員マスタ")]:::silver
 
     IN --> PROC --> OUT
+```
 
 ## ビジネスロジック
 1. **名寄せ処理**: `Person_ID` をキーに同一人物を統合する。
