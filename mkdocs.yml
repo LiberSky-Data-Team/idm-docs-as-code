@@ -10,6 +10,8 @@ nav:
     - 3.2 社員属性・兼務計算: process_3_2_emp.md
 
 markdown_extensions:
+  - attr_list
+  - pymdownx.superfences
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

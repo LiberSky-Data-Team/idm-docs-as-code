@@ -20,18 +20,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Pandoc & Dependencies
+      - name: Install Japanese Fonts, Pandoc & Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc
+          sudo apt-get install -y pandoc fonts-noto-cjk
           pip install mkdocs-material weasyprint
 
       - name: Generate PDF and Word via Pandoc
         run: |
           mkdir -p docs/downloads
-          # PDFの書き出し
-          pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.pdf --pdf-engine=weasyprint
-          # Word(.docx)の書き出し
+          # PDF（日本語フォントNoto Sans指定で文字化け回避）
+          pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.pdf \
+            --pdf-engine=weasyprint \
+            -V mainfont="Noto Sans CJK JP"
+
+          # Word (.docx) 変換
           pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.docx
 
       - name: Deploy MkDocs to GitHub Pages
