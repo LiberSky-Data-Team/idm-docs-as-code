@@ -32,12 +32,14 @@ jobs:
           
           # PDF生成
           pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.pdf \
+            -f markdown-raw_html \
             --pdf-engine=weasyprint \
             -V mainfont="Noto Sans CJK JP"
 
           # 企業フォーマット対応Word (.docx) 生成
           pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.docx \
-            --reference-doc=docs/Template.docx \
+            -f markdown-raw_html \
+            --reference-doc=docs/template.docx \
             --toc \
             --toc-depth=3 \
             --highlight-style=breezeDark
