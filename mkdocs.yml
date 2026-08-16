@@ -1,0 +1,17 @@
+site_name: 次期IDM基盤 設計ポータル
+theme:
+  name: material
+  features:
+    - navigation.tabs
+
+nav:
+  - ホーム: index.md
+  - 詳細設計 (Silver層):
+    - 3.2 社員属性・兼務計算: process_3_2_emp.md
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
