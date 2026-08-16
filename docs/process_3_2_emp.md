@@ -1,4 +1,6 @@
 # 3.2 社員属性・兼務計算 (Lv2)
+[📄 PDF版をダウンロード](downloads/process_3_2_emp.pdf){ .md-button .md-button--primary }
+[📝 Word版をダウンロード](downloads/process_3_2_emp.docx){ .md-button }
 
 ## 概要
 Bronze層の社員CSVをクレンジングし、兼務ルールを適用してSilver層の社員マスタを生成します。

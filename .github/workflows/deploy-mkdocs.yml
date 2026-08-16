@@ -1,4 +1,4 @@
-name: Deploy Docs to GitHub Pages
+name: Deploy Docs, PDF, and Word
 
 on:
   push:
@@ -20,8 +20,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install MkDocs and Material theme
-        run: pip install mkdocs-material
+      - name: Install Pandoc & Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+          pip install mkdocs-material weasyprint
+
+      - name: Generate PDF and Word via Pandoc
+        run: |
+          mkdir -p docs/downloads
+          # PDFの書き出し
+          pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.pdf --pdf-engine=weasyprint
+          # Word(.docx)の書き出し
+          pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.docx
 
       - name: Deploy MkDocs to GitHub Pages
         run: mkdocs gh-deploy --force
