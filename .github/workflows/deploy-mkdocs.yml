@@ -29,13 +29,18 @@ jobs:
       - name: Generate PDF and Word via Pandoc
         run: |
           mkdir -p docs/downloads
-          # PDF（日本語フォントNoto Sans指定で文字化け回避）
+          
+          # PDF生成
           pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.pdf \
             --pdf-engine=weasyprint \
             -V mainfont="Noto Sans CJK JP"
 
-          # Word (.docx) 変換
-          pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.docx
+          # 企業フォーマット対応Word (.docx) 生成
+          pandoc docs/process_3_2_emp.md -o docs/downloads/process_3_2_emp.docx \
+            --reference-doc=docs/template.docx \
+            --toc \
+            --toc-depth=3 \
+            --highlight-style=breezeDark
 
       - name: Deploy MkDocs to GitHub Pages
         run: mkdocs gh-deploy --force
